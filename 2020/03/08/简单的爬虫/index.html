@@ -192,6 +192,17 @@
 
         <div class="post-content">
             <h1 id="网页爬虫"><a href="#网页爬虫" class="headerlink" title="网页爬虫"></a>网页爬虫</h1><p>由于想免费看漫画，网页上看又不太方便，于是打算写个爬虫爬到本地，于是有了这篇blog</p>
+<h1 id="爬虫入门简介"><a href="#爬虫入门简介" class="headerlink" title="爬虫入门简介"></a>爬虫入门简介</h1><p>为了入门，先介绍一下网络爬虫的基本流程，整体思路如下：</p>
+<ul>
+<li>首先使用requests库打开url或者向目标网站发送相应的请求得到html文档或者数据。</li>
+<li>然后使用浏览器去审计网页源码分析文档结构和各个元素节点。</li>
+<li>使用解析html文档的工具去提取想要的内容，这里推荐使用Beautiful Soup库（或使用正则表达式去匹配）。</li>
+<li>将所需要的数据以期望的形式存到本地磁盘或者数据库。</li>
+</ul>
+<h1 id="静态网页爬取"><a href="#静态网页爬取" class="headerlink" title="静态网页爬取"></a>静态网页爬取</h1><p>需要的库：requests、Beautiful Soup<br>目标网站：某知名小说网站<br>运行环境：Win10, python 3.7.4</p>
+<p>首先用浏览器先去审计目标网页:<br><img src="%E7%AE%80%E5%8D%95%E7%9A%84%E7%88%AC%E8%99%AB/1.png" alt=""><br>按F12进入开发者模式，可以看到我们需要的内容存在于这个div标签：<br><img src="%E7%AE%80%E5%8D%95%E7%9A%84%E7%88%AC%E8%99%AB/2.png" alt=""></p>
+<p>我们使用如下代码自动化上述访问操作：  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    target = <span class="string">'http://www.biqukan.com/1_1094/5403177.html'</span></span><br><span class="line">    req = requests.get(url=target)</span><br><span class="line">    print(req.text)</span><br></pre></td></tr></table></figure>
 
         </div>
 
