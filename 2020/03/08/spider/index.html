@@ -200,7 +200,7 @@
 <li>将所需要的数据以期望的形式存到本地磁盘或者数据库。</li>
 </ul>
 <h2 id="静态网页爬取"><a href="#静态网页爬取" class="headerlink" title="静态网页爬取"></a>静态网页爬取</h2><p>需要的库：requests、Beautiful Soup<br>目标网站：某盗版漫画网站<br>运行环境：Win10, python 3.7.4</p>
-<p>首先用浏览器先去审计目标网页:<br><img src="%E7%AE%80%E5%8D%95%E7%9A%84%E7%88%AC%E8%99%AB/1.png" alt=""><br>按F12进入开发者模式，可以看到我们需要的内容存在于这个class为showtxt的div标签：<br><img src="%E7%AE%80%E5%8D%95%E7%9A%84%E7%88%AC%E8%99%AB/2.png" alt=""></p>
+<p>首先用浏览器先去审计目标网页:<br><img src="1.png" alt="111"><br>按F12进入开发者模式，可以看到我们需要的内容存在于这个class为showtxt的div标签：<br><img src="2.png" alt=""></p>
 <p>我们使用如下代码自动化上述访问操作：  </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    target = <span class="string">'http://www.biqukan.com/1_1094/5403177.html'</span></span><br><span class="line">    req = requests.get(url=target)</span><br><span class="line">    <span class="comment"># print(req.text)</span></span><br><span class="line">    bf = BeautifulSoup(html)</span><br><span class="line">    texts = bf.find_all(<span class="string">'div'</span>, class_ = <span class="string">'showtxt'</span>) print(texts)</span><br></pre></td></tr></table></figure>
 
@@ -247,7 +247,7 @@
                 <a class="prev" rel="prev" href="/2020/03/10/%E5%A3%B0%E7%BA%B9%E8%AF%86%E5%88%AB/">声纹识别</a>
             
             
-            <a class="next" rel="next" href="/2020/03/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B63/">操作系统内存保护机制3</a>
+            <a class="next" rel="next" href="/2020/03/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6/">操作系统内存保护机制</a>
             
         </section>
 

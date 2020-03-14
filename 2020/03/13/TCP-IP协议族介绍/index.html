@@ -107,6 +107,68 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -129,7 +191,19 @@
         </header>
 
         <div class="post-content">
-            
+            <h2 id="5-2-TCP-IP协议栈"><a href="#5-2-TCP-IP协议栈" class="headerlink" title="5.2 TCP/IP协议栈"></a>5.2 TCP/IP协议栈</h2><h3 id="5-2-1-TCP-IP协议栈参考模型"><a href="#5-2-1-TCP-IP协议栈参考模型" class="headerlink" title="5.2.1 TCP/IP协议栈参考模型"></a>5.2.1 TCP/IP协议栈参考模型</h3><p>从上而下分为四层：应用层、传输层、网络互联层、主机到网络层<br><img src="TCP-IP%E5%8D%8F%E8%AE%AE%E6%97%8F%E4%BB%8B%E7%BB%8D/1.png" alt=""></p>
+<h3 id="5-2-2-主机到网络层"><a href="#5-2-2-主机到网络层" class="headerlink" title="5.2.2 主机到网络层"></a>5.2.2 主机到网络层</h3><p>对应于OSI的数据链路层，对于硬件及其驱动层TCP/IP没有进行规范。<br>本层的主要作用是为IP协议和ARP协议提供服务、发送和收取网络数据报。<br><img src="TCP-IP%E5%8D%8F%E8%AE%AE%E6%97%8F%E4%BB%8B%E7%BB%8D/2.png" alt=""></p>
+<h3 id="5-2-3-IP协议"><a href="#5-2-3-IP协议" class="headerlink" title="5.2.3 IP协议"></a>5.2.3 IP协议</h3><p>ip协议是tcp/ip协议中最重要的协议，他为TCP、UDP、ICMP等协议提供传输的通路。<br>IP层主要目的是提供子网互联，形成较大的网络，使得不同子网间能够通信。作用为：数据传输、寻址、路由选择。<br><img src="TCP-IP%E5%8D%8F%E8%AE%AE%E6%97%8F%E4%BB%8B%E7%BB%8D/3.png" alt=""><br>其中协议类型字段对应关系如下：<br><img src="TCP-IP%E5%8D%8F%E8%AE%AE%E6%97%8F%E4%BB%8B%E7%BB%8D/4.png" alt=""></p>
+<h3 id="网际报文控制协议（ICMP）"><a href="#网际报文控制协议（ICMP）" class="headerlink" title="网际报文控制协议（ICMP）"></a>网际报文控制协议（ICMP）</h3><p>1.协议格式：ICMP协议的数据位于IP字段的数据部分，它是在IP报文内部<br>2.dsda<br>3.不可达报文格式<br>类型字段为0</p>
+<h3 id="传输控制协议TCP"><a href="#传输控制协议TCP" class="headerlink" title="传输控制协议TCP"></a>传输控制协议TCP</h3><p>特点:</p>
+<ul>
+<li>字节流的服务：包的发送顺序和接受顺序间不完全一致</li>
+<li>面向连接的服务</li>
+<li>可靠传输服务</li>
+<li>全双工传输</li>
+<li>流量控制<br>运行在IP协议的基础上进行传输数据</li>
+</ul>
+
         </div>
 
         
@@ -170,8 +244,10 @@
         </section>
         <section class="post-nav">
             
+                <a class="prev" rel="prev" href="/2020/03/13/Windows%E7%B3%BB%E7%BB%9F/">Windows系统</a>
             
-            <a class="next" rel="next" href="/2020/03/13/%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B/">Linux 程序、进程和线程</a>
+            
+            <a class="next" rel="next" href="/2020/03/13/Linux%E7%A8%8B%E5%BA%8F%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">Linux 程序、进程和线程</a>
             
         </section>
 
