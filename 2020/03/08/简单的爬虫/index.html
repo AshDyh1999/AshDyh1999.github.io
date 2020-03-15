@@ -12,7 +12,7 @@
 
 
 
-<title>Hello World | BB&#39;s blog</title>
+<title>简单的爬虫 | BB&#39;s blog</title>
 
 
 
@@ -173,7 +173,7 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">Hello World</h1>
+            <h1 class="post-title">简单的爬虫</h1>
             
                 <div class="post-meta">
                     
@@ -182,7 +182,7 @@
 
                     
                         <span class="post-time">
-                        Date: <a href="#">十二月 13, 2019&nbsp;&nbsp;18:30:39</a>
+                        Date: <a href="#">三月 8, 2020&nbsp;&nbsp;23:52:07</a>
                         </span>
                     
                     
@@ -191,19 +191,18 @@
         </header>
 
         <div class="post-content">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <h2 id="网页爬虫"><a href="#网页爬虫" class="headerlink" title="网页爬虫"></a>网页爬虫</h2><p>由于想免费看漫画，网页上看又不太方便，于是打算写个爬虫爬到本地，于是有了这篇blog</p>
+<h2 id="爬虫入门简介"><a href="#爬虫入门简介" class="headerlink" title="爬虫入门简介"></a>爬虫入门简介</h2><p>为了入门，先介绍一下网络爬虫的基本流程，整体思路如下：</p>
+<ul>
+<li>首先使用requests库打开url或者向目标网站发送相应的请求得到html文档或者数据。</li>
+<li>然后使用浏览器去审计网页源码分析文档结构和各个元素节点。</li>
+<li>使用解析html文档的工具去提取想要的内容，这里推荐使用Beautiful Soup库（或使用正则表达式去匹配）。</li>
+<li>将所需要的数据以期望的形式存到本地磁盘或者数据库。</li>
+</ul>
+<h2 id="静态网页爬取"><a href="#静态网页爬取" class="headerlink" title="静态网页爬取"></a>静态网页爬取</h2><p>需要的库：requests、Beautiful Soup<br>目标网站：某盗版漫画网站<br>运行环境：Win10, python 3.7.4</p>
+<p>首先用浏览器先去审计目标网页:<br><img src="1.png" alt=""><br>按F12进入开发者模式，可以看到我们需要的内容存在于这个class为showtxt的div标签：<br><img src="2.png" alt=""></p>
+<p>我们使用如下代码自动化上述访问操作：  </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    target = <span class="string">'http://www.biqukan.com/1_1094/5403177.html'</span></span><br><span class="line">    req = requests.get(url=target)</span><br><span class="line">    <span class="comment"># print(req.text)</span></span><br><span class="line">    bf = BeautifulSoup(html)</span><br><span class="line">    texts = bf.find_all(<span class="string">'div'</span>, class_ = <span class="string">'showtxt'</span>) print(texts)</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -231,6 +230,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/Spider/"># Spider</a>
+                    
+                        
                 </span>
             </div>
             <div>
@@ -241,10 +244,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2019/12/13/test/">test</a>
+                <a class="prev" rel="prev" href="/2020/03/10/%E5%A3%B0%E7%BA%B9%E8%AF%86%E5%88%AB/">声纹识别</a>
             
             
-            <a class="next" rel="next" href="/2019/01/03/Ubuntu%E8%AE%BE%E7%BD%AE%E5%88%9D%E5%A7%8B%E5%8C%96/">Ubuntu设置初始化</a>
+            <a class="next" rel="next" href="/2020/03/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%E6%9C%BA%E5%88%B6/">操作系统内存保护机制</a>
             
         </section>
 

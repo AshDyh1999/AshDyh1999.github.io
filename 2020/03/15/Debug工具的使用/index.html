@@ -107,6 +107,68 @@
             <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
@@ -129,7 +191,29 @@
         </header>
 
         <div class="post-content">
-            
+            <h2 id="D命令"><a href="#D命令" class="headerlink" title="D命令"></a>D命令</h2><p>使用D命令查看内存单元<br>使用格式： </p>
+<ul>
+<li>d 段地址：偏移地址  </li>
+<li>d 段地址：起始偏移地址 结尾偏移地址 </li>
+<li>d 段寄存器：偏移地址</li>
+<li>d 段地址：寄存器</li>
+</ul>
+<h2 id="A命令"><a href="#A命令" class="headerlink" title="A命令"></a>A命令</h2><p>使用A命令以汇编的格式去向内存写一段程序<br>使用格式：</p>
+<ul>
+<li>a 段基址：偏移地址</li>
+</ul>
+<h2 id="R命令"><a href="#R命令" class="headerlink" title="R命令"></a>R命令</h2><p>使用R命令查看当前寄存器的值，也可以该改变CPU寄存器的内容<br>使用格式：</p>
+<ul>
+<li>r</li>
+<li>r 寄存器<h2 id="T命令"><a href="#T命令" class="headerlink" title="T命令"></a>T命令</h2>使用T命令去单步执行程序，单步CS：IP处的指令，每次执行都会显示当前寄存器的状态<br>使用格式:</li>
+<li>t<h2 id="E命令"><a href="#E命令" class="headerlink" title="E命令"></a>E命令</h2>使用E命令去修改内存中的内容<br>使用格式：</li>
+<li>e 段基址：偏移地址</li>
+</ul>
+<h2 id="U命令"><a href="#U命令" class="headerlink" title="U命令"></a>U命令</h2><p>使用U命令去将内存中的机器指令翻译成汇编指令<br>使用格式：</p>
+<ul>
+<li>u 段基址：偏移地址</li>
+</ul>
+
         </div>
 
         
@@ -156,6 +240,10 @@
                 <span>Tag(s):</span>
                 <span class="tag">
                     
+                    
+                        <a href="/tags/DOS%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"># DOS操作系统</a>
+                    
+                        
                 </span>
             </div>
             <div>

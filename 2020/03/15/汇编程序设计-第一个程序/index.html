@@ -203,13 +203,9 @@
 <li>编写：使用文本编辑器用汇编语言编写<strong>源程序</strong></li>
 <li>编译：对<strong>源程序</strong>编译产生<strong>目标文件</strong></li>
 <li>连接：使用连接程序对<strong>目标文件</strong>进行临界产生<strong>可执行文件</strong></li>
-<li>执行：执行可执行文件（包括程序机器码，数据和相关描述信息）<br><img src="3.png" alt=""></li>
+<li>执行：执行可执行文件（包括程序机器码，数据和相关描述信息）<br><img src="3.png" alt=""><h2 id="源程序"><a href="#源程序" class="headerlink" title="源程序"></a>源程序</h2>包括汇编指令和伪指令  </li>
 </ul>
-<div class="image-box">
-                <img src="http://qzonestyle.gtimg.cn/qzone/qzactStatics/imgs/20171122191630_ff8fef.jpg" alt="[50]" title="[50]picture 404!" class="This is a pic for test">
-                <p class="image-box-title">[50]picture 404!</p>
-            </div>
-<h2 id="源程序"><a href="#源程序" class="headerlink" title="源程序"></a>源程序</h2><p>包括汇编指令和伪指令<br><strong>汇编指令</strong>：对应的机器码指令最终可为CPU执行。<br><strong>伪指令</strong>：由编译器来执行的指令，编译器根据伪指令来进行相关的编译工作。</p>
+<p><strong>汇编指令</strong>：对应的机器码指令最终可为CPU执行。<br><strong>伪指令</strong>：由编译器来执行的指令，编译器根据伪指令来进行相关的编译工作。</p>
 <p><strong>一些例子</strong>：<br><strong>segment</strong>和<strong>ends</strong>：定义一个段,每个段必须有一个名称来标识，即 段名 segment、段名 ends。<br><strong>end</strong>:程序结束标记，如果程序写完不加伪指令end，则编译器不知道程序在何处结束。<br><strong>assume</strong>含义为假设，它假设某一段寄存器和程序中某一个用segment定义的段相关联。  </p>
 <p><strong>程序返回</strong>：一个程序结束后，讲CPU的控制权交还给使得它得以运行的程序，这个过程叫，程序返回。<br>在程序末尾加上返回的程序段：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mov ax,4c00H </span><br><span class="line">int 21H</span><br></pre></td></tr></table></figure>
